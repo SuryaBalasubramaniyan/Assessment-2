@@ -91,26 +91,25 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		
 		
 	}
-	@Override
-	public void delete(String name) {
+	
+	public boolean delete(EmployeeBean emp) {
 		//System.out.println(name+"in emp");
 		try {
-			PreparedStatement stmt=c.prepareStatement("delete from employee where name='?' ");
-			//stmt.setString(1,name);
-			//PreparedStatement stmt=c.prepareStatement("delete from employee where name=?");
-			//stmt.setInt(1, 2);
+			PreparedStatement stmt=c.prepareStatement("delete from employee where name=? ");
+			stmt.setString(1,emp.getName());
 			int i=stmt.executeUpdate();
-			//System.out.println("i:"+i);
+			System.out.println("i:"+i);
 		if(i>0){
 		 System.out.println("Deleted successfully");
+		 return true;
 		}
-		System.out.println("No.....");
+		
 		}
 		catch (SQLException e) {
 			
 			e.printStackTrace();
 		}
-		
+		return false;
 	}
 	
 	@Override

@@ -31,17 +31,14 @@ public class Delete extends HttpServlet {
 		ApplicationContext factory=new ClassPathXmlApplicationContext("beans.xml");
 		EmployeeDaoImpl empDaoImpl =(EmployeeDaoImpl)factory.getBean("emp");
 		EmployeeBean emp=new EmployeeBean();
-		//emp.setName(request.getParameter("name"));
-		//emp.setPassword(request.getParameter("password"));
-		//emp.setRole(request.getParameter("role"));
-		//emp.setAge(Integer.parseInt(request.getParameter("age")));
-		//emp.setEmail(request.getParameter("email"));
-		//emp.setMobile(Integer.parseInt(request.getParameter("mobile")));
 		//empDaoImpl.connectDatabase();
-		String name=(request.getParameter("name"));
+		emp.setName(request.getParameter("name"));
+		
+		//String name=(request.getParameter("name"));
 		//System.out.println(name);
-		empDaoImpl.delete(name);
-				//System.out.println("Deleted ......");
+		boolean res=empDaoImpl.delete(emp);
+		if(res==true)
+				System.out.println("Deleted ......");
 	}
 
 }
