@@ -39,9 +39,9 @@ public class Delete extends HttpServlet {
 		//emp.setMobile(Integer.parseInt(request.getParameter("mobile")));
 		//empDaoImpl.connectDatabase();
 		String name=(request.getParameter("name"));
-		//System.out.println("Deleted ......");
+		//System.out.println(name);
 		empDaoImpl.delete(name);
-				System.out.println("Deleted ......");
+				//System.out.println("Deleted ......");
 	}
 
 }
