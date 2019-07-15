@@ -143,4 +143,57 @@ public class EmployeeDaoImpl implements EmployeeDao {
        return emplist;
 		
 	}
+	
+	public EmployeeBean search(String name) {
+		try {
+			PreparedStatement p=c.prepareStatement("select * from  employee where name=?;");
+			p.setString(1, name);
+			ResultSet rs = p.executeQuery();
+			if(rs.next())
+			{
+				 EmployeeBean emp=new  EmployeeBean();
+				emp.setName(rs.getString(1));
+				emp.setPassword(rs.getString(2));
+				emp.setRole(rs.getString(3));
+				emp.setAge(rs.getInt(4));
+				emp.setEmail(rs.getString(5));
+				emp.setMobile(rs.getInt(6));
+				System.out.println(emp);
+				return emp;
+		
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public boolean update(EmployeeBean emp) {
+		String update = "update employee set name = ?, password = ?, role = ?, age = ?, email = ?, mobile = ? where name = ?";
+		try {
+			
+		PreparedStatement preparedStatement = c.prepareStatement(update);
+		preparedStatement.setString(1, emp.getName());
+		preparedStatement.setString(2, emp.getPassword());
+		preparedStatement.setString(3, emp.getRole());
+		preparedStatement.setInt(4, emp.getAge());
+		preparedStatement.setString(5, emp.getEmail());
+		preparedStatement.setInt(6, emp.getMobile());
+		preparedStatement.setString(7, emp.getName());
+
+		
+			if(preparedStatement.execute())
+				return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		return false;
+		// TODO Auto-generated method stub
+		
+	}
 }
