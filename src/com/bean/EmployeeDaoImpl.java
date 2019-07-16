@@ -35,6 +35,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 					}
 				 
 				 System.out.println("dao");
+				 rs.close();
+				 ps.close();
 			 } 
 		 catch (SQLException e) {
 				
@@ -82,7 +84,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				return true;
 			}
 			
-		
+		preparedStatement.close();
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
@@ -103,7 +105,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		 System.out.println("Deleted successfully");
 		 return true;
 		}
-		
+		stmt.close();
 		}
 		catch (SQLException e) {
 			
@@ -135,7 +137,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				emplist.add(emp);
 		
 			}
-			
+			rs.close();
+			st.close();
 				
 		} catch (SQLException e) {
 						e.printStackTrace();
@@ -162,6 +165,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				return emp;
 		
 			}
+			rs.close();
+			p.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -187,6 +192,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		
 			if(preparedStatement.execute())
 				return true;
+			preparedStatement.close();
 		}
 		catch(Exception e)
 		{
